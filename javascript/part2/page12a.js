@@ -1,10 +1,26 @@
 //Print best performing Stock
-const stockPrice = [
-  { name: "Wirpo", lastPrice: 200, currPrice: 210 },
-  { name: "Deloite", lastPrice: 250, currPrice: 270 },
-  { name: "HDFC", lastPrice: 200, currPrice: 290 },
-];
-function bestStock(companies){
-    
+
+
+function bestStock(stockPrices) {
+    let maxDiff = -Infinity;
+    let bestStockName = "";
+
+    for (let i = 0; i < stockPrices.length; i++) {
+        let stock = stockPrices[i];
+        let priceDiff = stock.currentPrice - stock.lastPrice;
+        if (priceDiff > maxDiff) {
+            maxDiff = priceDiff;
+            bestStockName = stock.name;
+        }
+    }
+
+    return `${bestStockName} has more`;
 }
-bestStock(stockPrice)
+
+const stockPrice = [
+    { name: "Wipro", lastPrice: 200, currentPrice: 210 },
+    { name: "Deloitte", lastPrice: 250, currentPrice: 270 },
+    { name: "HDFC", lastPrice: 200, currentPrice: 290 }
+];
+
+console.log(bestStock(stockPrice));
